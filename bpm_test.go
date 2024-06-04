@@ -9,12 +9,12 @@ import (
 
 func TestBPMClient_CreateProcessCase(t *testing.T) {
 
-	b := New("isabelle_wu")
+	b := New("")
 
 	formInput1 := `{
-		"account":"james",
-		"pm":"44", 
-		"tm":["43","42"] 
+		"account":"",
+		"pm":"", 
+		"tm":["",""] 
 	}`
 
 	type fields struct {
@@ -37,7 +37,7 @@ func TestBPMClient_CreateProcessCase(t *testing.T) {
 		wantCaseId []byte
 	}{
 		{
-			name: "isabelle_wu",
+			name: "",
 			fields: fields{
 				serverUri:  b.serverUri,
 				apiUri:     b.apiUri,
@@ -48,7 +48,7 @@ func TestBPMClient_CreateProcessCase(t *testing.T) {
 				jSessionId: b.jSessionId,
 			},
 			args: args{
-				processId: "7999808492643941641",
+				processId: "",
 				jsonBody:  formInput1,
 			},
 			wantCaseId: []byte(""),
@@ -83,11 +83,11 @@ func TestModelInputStringToRawJson(t *testing.T) {
 		want string
 	}{
 		{
-			name: `{"pm": 44, "tm": [44]} TO {"modelInput":{"pm":44,"tm":[44]}}`,
+			name: `{"pm": , "tm": []} TO {"modelInput":{"pm":,"tm":[]}}`,
 			args: args{
-				s: `{"pm": 44, "tm": [44]}`,
+				s: `{"pm": , "tm": []}`,
 			},
-			want: `{"modelInput":{"pm":44,"tm":[44]}}`,
+			want: `{"modelInput":{"pm":,"tm":[]}}`,
 		},
 	}
 	for _, tt := range tests {
@@ -101,8 +101,8 @@ func TestModelInputStringToRawJson(t *testing.T) {
 
 func TestBPMClient_GetStateCaseList(t *testing.T) {
 
-	b := New("isabelle_wu")
-	// GetReadyCase("50", "ready", "38")
+	b := New("")
+	
 
 	type fields struct {
 		serverUri  string
@@ -125,7 +125,7 @@ func TestBPMClient_GetStateCaseList(t *testing.T) {
 		want   []byte
 	}{
 		{
-			name: `GetReadyCase("38","50","ready")`,
+			name: `GetReadyCase("","","")`,
 			fields: fields{
 				serverUri:  b.serverUri,
 				apiUri:     b.apiUri,
@@ -136,9 +136,9 @@ func TestBPMClient_GetStateCaseList(t *testing.T) {
 				jSessionId: b.jSessionId,
 			},
 			args: args{
-				rows:   "50",
-				state:  "ready",
-				userId: "38",
+				rows:   "",
+				state:  "",
+				userId: "",
 			},
 			want: []byte(""),
 		},
@@ -164,7 +164,7 @@ func TestBPMClient_GetStateCaseList(t *testing.T) {
 func TestBPMClient_ExecuteTask(t *testing.T) {
 
 	//身分驗證
-	b := New("isabelle_wu")
+	b := New("")
 	//建立該函式參數結構
 	type args struct {
 		taskId   string
@@ -179,8 +179,8 @@ func TestBPMClient_ExecuteTask(t *testing.T) {
 		{
 			name: `ExecuteTask`,
 			args: args{
-				taskId:   "100035",
-				jsonBody: `{"dstaff":[74,79],"gmapprovalstatus":true}`,
+				taskId:   "",
+				jsonBody: `{"dstaff":[,],"gmapprovalstatus":true}`,
 			},
 			want: 0,
 		},
@@ -196,7 +196,7 @@ func TestBPMClient_ExecuteTask(t *testing.T) {
 }
 
 func TestBPMClient_GetCasePendingTaskDetail(t *testing.T) {
-	b := New("isabelle_wu")
+	b := New("")
 	type args struct {
 		caseId string
 	}
@@ -207,7 +207,7 @@ func TestBPMClient_GetCasePendingTaskDetail(t *testing.T) {
 	}{
 		{
 			args: args{
-				caseId: "3209",
+				caseId: "",
 			},
 			want: []byte(""),
 		},
@@ -222,7 +222,7 @@ func TestBPMClient_GetCasePendingTaskDetail(t *testing.T) {
 }
 
 func TestBPMClient_GetCaseArchivedTaskDetail(t *testing.T) {
-	b := New("isabelle_wu")
+	b := New("")
 	type args struct {
 		caseId string
 	}
@@ -233,7 +233,7 @@ func TestBPMClient_GetCaseArchivedTaskDetail(t *testing.T) {
 	}{
 		{
 			args: args{
-				caseId: "3209",
+				caseId: "",
 			},
 			want: []byte(""),
 		},
@@ -248,7 +248,7 @@ func TestBPMClient_GetCaseArchivedTaskDetail(t *testing.T) {
 }
 
 func TestBPMClient_GetArchivedTaskDetail(t *testing.T) {
-	b := New("isabelle_wu")
+	b := New("")
 	type args struct {
 		sourceObjectId string
 	}
@@ -259,7 +259,7 @@ func TestBPMClient_GetArchivedTaskDetail(t *testing.T) {
 	}{
 		{
 			args: args{
-				sourceObjectId: "60746",
+				sourceObjectId: "",
 			},
 			want: []byte(""),
 		},
@@ -275,7 +275,7 @@ func TestBPMClient_GetArchivedTaskDetail(t *testing.T) {
 
 func TestBPMClient_GetProcessAllCaseList(t *testing.T) {
 
-	b := New("isabelle_wu")
+	b := New("")
 	type args struct {
 		rows      string
 		processId string
@@ -287,8 +287,8 @@ func TestBPMClient_GetProcessAllCaseList(t *testing.T) {
 	}{
 		{
 			args: args{
-				rows:      "100",
-				processId: "7999808492643941641",
+				rows:      "",
+				processId: "",
 			},
 			want: []byte(""),
 		},
@@ -303,7 +303,7 @@ func TestBPMClient_GetProcessAllCaseList(t *testing.T) {
 }
 
 func TestBPMClient_UpdateAssignedId(t *testing.T) {
-	b := New("james")
+	b := New("")
 	type args struct {
 		userId string
 		taskId string
@@ -316,8 +316,8 @@ func TestBPMClient_UpdateAssignedId(t *testing.T) {
 	}{
 		{
 			args: args{
-				userId: "22",
-				taskId: "464035",
+				userId: "",
+				taskId: "",
 			},
 			want: 0,
 		},

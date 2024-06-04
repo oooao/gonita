@@ -7,7 +7,7 @@ import (
 )
 
 func TestBPMClient_AddGroup(t *testing.T) {
-	b := New("isabelle_wu")
+	b := New("")
 	type args struct {
 		bodyInput string
 	}
@@ -18,7 +18,7 @@ func TestBPMClient_AddGroup(t *testing.T) {
 	}{
 		{
 			args: args{
-				bodyInput: `{"name": "test111", "displayname": "gonitaTest1", "parent_group_id":"67"}`,
+				bodyInput: `{"name": "", "displayname": "", "parent_group_id":""}`,
 			},
 			want: []byte(""),
 		},
@@ -33,7 +33,7 @@ func TestBPMClient_AddGroup(t *testing.T) {
 }
 
 func TestBPMClient_EditGroup(t *testing.T) {
-	b := New("isabelle_wu")
+	b := New("")
 	type args struct {
 		bodyInput string
 		groupId   string
@@ -46,8 +46,8 @@ func TestBPMClient_EditGroup(t *testing.T) {
 	}{
 		{
 			args: args{
-				bodyInput: `{"name": "test11111", "displayname": "gonitaTest111", "parent_group_id":"67","country":"hello"}`,
-				groupId:   "117",
+				bodyInput: `{"name": "", "displayname": "", "parent_group_id":"","country":""}`,
+				groupId:   "",
 			},
 			want: 0,
 		},
@@ -62,7 +62,7 @@ func TestBPMClient_EditGroup(t *testing.T) {
 }
 
 func TestBPMClient_DeleteGroup(t *testing.T) {
-	b := New("isabelle_wu")
+	b := New("")
 	type args struct {
 		groupId string
 	}
@@ -73,7 +73,7 @@ func TestBPMClient_DeleteGroup(t *testing.T) {
 	}{
 		{
 			args: args{
-				groupId: "114",
+				groupId: "",
 			},
 			want: 0,
 		},
@@ -88,7 +88,7 @@ func TestBPMClient_DeleteGroup(t *testing.T) {
 }
 
 func TestBPMClient_AddProfileMember(t *testing.T) {
-	b := New("isabelle_wu")
+	b := New("")
 
 	type args struct {
 		profile_id string
@@ -101,8 +101,8 @@ func TestBPMClient_AddProfileMember(t *testing.T) {
 	}{
 		{
 			args: args{
-				profile_id: "1",
-				id:         "221",
+				profile_id: "",
+				id:         "",
 			},
 			want: []byte(""),
 		},
@@ -117,7 +117,7 @@ func TestBPMClient_AddProfileMember(t *testing.T) {
 }
 
 func TestBPMClient_AddMembership(t *testing.T) {
-	b := New("isabelle_wu")
+	b := New("")
 
 	type args struct {
 		bodyinput string
@@ -129,7 +129,7 @@ func TestBPMClient_AddMembership(t *testing.T) {
 	}{
 		{
 			args: args{
-				bodyinput: `{"user_id": "220", "group_id": "79", "role_id":"3"}`,
+				bodyinput: `{"user_id": "", "group_id": "", "role_id":""}`,
 			},
 			want: []byte(""),
 		},
@@ -144,7 +144,7 @@ func TestBPMClient_AddMembership(t *testing.T) {
 }
 
 func TestBPMClient_AddProfessionalContactData(t *testing.T) {
-	b := New("isabelle_wu")
+	b := New("")
 
 	type args struct {
 		id       string
@@ -157,8 +157,8 @@ func TestBPMClient_AddProfessionalContactData(t *testing.T) {
 	}{
 		{
 			args: args{
-				id:       "205",
-				username: "test",
+				id:       "",
+				username: "",
 			},
 		},
 	}
@@ -172,7 +172,7 @@ func TestBPMClient_AddProfessionalContactData(t *testing.T) {
 }
 
 func TestBPMClient_EditUser(t *testing.T) {
-	b := New("isabelle_wu")
+	b := New("")
 
 	type args struct {
 		userId    string
@@ -186,7 +186,7 @@ func TestBPMClient_EditUser(t *testing.T) {
 		{
 			args: args{
 				userId:    "",
-				bodyinput: `{"id":"888","userName": "測試的}`,
+				bodyinput: `{"id":"","userName": "}`,
 			},
 			want: 0,
 		},
@@ -201,7 +201,7 @@ func TestBPMClient_EditUser(t *testing.T) {
 }
 
 func TestBPMClient_DeleteMembership(t *testing.T) {
-	b := New("isabelle_wu")
+	b := New("")
 
 	type args struct {
 		userId  string
@@ -215,9 +215,9 @@ func TestBPMClient_DeleteMembership(t *testing.T) {
 	}{
 		{
 			args: args{
-				userId:  "220",
-				groupId: "79",
-				roleId:  "3",
+				userId:  "",
+				groupId: "",
+				roleId:  "",
 			},
 			want: 0,
 		},
@@ -232,7 +232,7 @@ func TestBPMClient_DeleteMembership(t *testing.T) {
 }
 
 func TestBPMClient_DeleteUser(t *testing.T) {
-	b := New("isabelle_wu")
+	b := New("")
 
 	type args struct {
 		userId string
@@ -244,7 +244,7 @@ func TestBPMClient_DeleteUser(t *testing.T) {
 	}{
 		{
 			args: args{
-				userId: "229",
+				userId: "",
 			},
 			want: 0,
 		},
@@ -259,7 +259,7 @@ func TestBPMClient_DeleteUser(t *testing.T) {
 }
 
 func TestBPMClient_AddUser(t *testing.T) {
-	b := New("isabelle_wu")
+	b := New("")
 	type args struct {
 		bodyInput string
 	}
@@ -272,7 +272,7 @@ func TestBPMClient_AddUser(t *testing.T) {
 	}{
 		{
 			args: args{
-				bodyInput: `{"password":"12345","userName":"abc","enabled":"true"}`,
+				bodyInput: `{"password":"","userName":"","enabled":""}`,
 			},
 			want:  10,
 			want1: false,
@@ -293,7 +293,7 @@ func TestBPMClient_AddUser(t *testing.T) {
 }
 
 func TestBPMClient_GetUserMembership(t *testing.T) {
-	b := New("isabelle_wu")
+	b := New("")
 	type args struct {
 		userId string
 	}
@@ -304,7 +304,7 @@ func TestBPMClient_GetUserMembership(t *testing.T) {
 	}{
 		{
 			args: args{
-				userId: "38",
+				userId: "",
 			},
 			want: []byte(""),
 		},
@@ -321,7 +321,7 @@ func TestBPMClient_GetUserMembership(t *testing.T) {
 }
 
 func TestBPMClient_EditUserMembership(t *testing.T) {
-	b := New("isabelle_wu")
+	b := New("")
 	type args struct {
 		jsonBody string
 		group_id string
@@ -335,13 +335,13 @@ func TestBPMClient_EditUserMembership(t *testing.T) {
 	}{
 		{
 			args: args{
-				group_id: "69",
-				role_id:  "5",
-				jsonBody: `{"user_id":"40",
-				"group_id":"73", 
-				"role_id":"3",
-				"tm":["38","44"],
-				"pm":"42"}`,
+				group_id: "",
+				role_id:  "",
+				jsonBody: `{"user_id":"",
+				"group_id":"", 
+				"role_id":"",
+				"tm":["",""],
+				"pm":""}`,
 			},
 			want: false,
 		},

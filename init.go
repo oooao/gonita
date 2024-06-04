@@ -8,8 +8,8 @@ const (
 
 // TODO: Need chanage to Variables of Environment
 var (
-	user_ppassword = "12345"
-	server_ip_port = "localhost:8080"
+	user_ppassword = ""
+	server_ip_port = ""
 )
 
 //

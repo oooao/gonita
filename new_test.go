@@ -15,16 +15,16 @@ func TestNew(t *testing.T) {
 		want *BPMClient
 	}{
 		{
-			name: "isabelle_wu",
+			name: "",
 			args: args{
-				username: "isabelle_wu",
+				username: "",
 			},
 			want: nil,
 		},
 		{
-			name: "Unknown User",
+			name: "",
 			args: args{
-				username: "unknown_user",
+				username: "",
 			},
 			want: nil,
 		},
